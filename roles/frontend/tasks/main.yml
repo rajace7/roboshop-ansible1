@@ -1,0 +1,33 @@
+
+- name: INSTALL NGINX WEBSERVER
+  ansible.builtin.yum:
+    name: nginx
+    state: installed
+
+- name: COPY REVERSE PROXY FILE TO DEFAULT.D FOLDER
+  ansible.builtin.copy:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf
+
+- name: REMOVE DEFAULT WEBSERVER CONTENT
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
+- name: CREATE APPLICATION DIRECTORY
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+
+
+- name: DOWNLOAD THE APP CONTENT & UNZIP THE APP CONTENT
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
+- name: ENABLE AND RESTART NGINX WEBSERVER
+  ansible.builtin.systemd:
+    state: restarted
+    name: nginx
+    enabled: true
