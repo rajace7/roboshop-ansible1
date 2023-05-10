@@ -1,13 +1,11 @@
-
-
 - name : COPY REPO FILE TO YUM.REPO.D
-  ansibile.builtin.copy:
+  ansible.builtin.copy:
     src : mongod.repo
     dest :  /etc/yum.repos.d/mongod.repo
   when : schema_setup == "mongo"
 
 - name : INSTALL MONGOD CLIENT
-  ansibile.builtin.yum:
+  ansible.builtin.yum:
     name:  mongodb-org-shell
     state: installed
   when : schema_setup == "mongo"
