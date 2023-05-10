@@ -5,7 +5,7 @@
 - name : CONFIGURE NODE JS REPO
   ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
 
-- name: Install the latest version of Apache
+- name: INSTALL NODE JS
   ansible.builtin.yum:
     name: nodejs
     state: installed
