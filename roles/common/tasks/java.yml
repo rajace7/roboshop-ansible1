@@ -9,7 +9,7 @@
 
 - name: INSTALL maven DEPENDENCIES
   ansible.builtin.shell: mvn clean package ; mv target/{{component_name}}-1.0.jar {{component_name}}.jar
-    args :
+  args :
     chdir : /app
 
 - name: IMPORT/SCHEMA_SETUP
