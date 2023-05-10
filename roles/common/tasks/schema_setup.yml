@@ -24,4 +24,4 @@
         state: installed
 
     - name : LOAD THE MYSQL SCEHMA
-      ansible.builtin.shell : mysql -h {{ lookup('aws_ssm', 'dev.shipping_service.host_mysql', region='us-east-1' ) }} -u{{ lookup('aws_ssm', 'dev.shipping_schema.username_mysqlsource', region='us-east-1' ) }} -p{{ lookup('aws_ssm', 'dev.shipping_schema.password_mysqlsource', region='us-east-1' ) }} < /app/schema/${component_name}.sql
+      ansible.builtin.shell : mysql -h {{ lookup('aws_ssm', 'dev.shipping_service.host_mysql', region='us-east-1' ) }} -u{{ lookup('aws_ssm', 'dev.shipping_schema.username_mysqlsource', region='us-east-1' ) }} -p{{ lookup('aws_ssm', 'dev.shipping_schema.password_mysqlsource', region='us-east-1' ) }} < /app/schema/{{component_name}}.sql
