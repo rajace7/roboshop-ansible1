@@ -1,0 +1,20 @@
+
+- name: ADD APPLICATION USER
+  ansible.builtin.user:
+    name: "{{application_user}}"
+
+- name: REMOVE DEFAULT WEBSERVER CONTENT
+  ansible.builtin.file:
+    path: /app
+    state: absent
+
+- name: CREATE APPLICATION DIRECTORY
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: DOWNLOAD THE APP CONTENT & UNZIP THE APP CONTENT
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/{{component_name}}.zip
+    dest: /app
+    remote_src: yes

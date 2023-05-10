@@ -1,0 +1,21 @@
+
+#func_systemd_setup
+#func_schema_setup
+
+- name : CONFIGURE NODE JS REPO
+  ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
+
+- name: Install the latest version of Apache
+  ansible.builtin.yum:
+    name: nodejs
+    state: installed
+
+- name: IMPORT/CALL APP_PREQUISITE YML
+      ansible.builtin.import_tasks:
+        file: app_requisite.yml
+
+- name: Install the latest version of Apache
+  ansible.builtin.shell: npm install
+   args :
+     chdir : /app
+
