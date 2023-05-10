@@ -23,3 +23,7 @@
   ansible.builtin.import_tasks:
     file: schema_setup.yml
 
+- name: IMPORT/SCHEMA_SETUP
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml
+
