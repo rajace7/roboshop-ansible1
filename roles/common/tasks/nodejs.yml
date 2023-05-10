@@ -1,7 +1,4 @@
 
-#func_systemd_setup
-#func_schema_setup
-
 - name : CONFIGURE NODE JS REPO
   ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
 
@@ -23,7 +20,7 @@
   ansible.builtin.import_tasks:
     file: schema_setup.yml
 
-- name: IMPORT/SCHEMA_SETUP
+- name: IMPORT/SYSTEMD_SETUP
   ansible.builtin.import_tasks:
     file: systemd_setup.yml
 
