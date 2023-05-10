@@ -11,10 +11,10 @@
     state: installed
 
 - name: IMPORT/CALL APP_PREQUISITE YML
-      ansible.builtin.import_tasks:
-        file: app_requisite.yml
+  ansible.builtin.import_tasks:
+    file: app_requisite.yml
 
-- name: Install the latest version of Apache
+- name: INSTALL NODEJS DEPENDENCIES
   ansible.builtin.shell: npm install
    args :
      chdir : /app
