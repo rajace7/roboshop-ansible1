@@ -16,6 +16,6 @@
 
 - name: INSTALL NODEJS DEPENDENCIES
   ansible.builtin.shell: npm install
-   args :
-     chdir : /app
+  args :
+    chdir : /app
 
