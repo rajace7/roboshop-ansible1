@@ -19,3 +19,7 @@
   args :
     chdir : /app
 
+- name: IMPORT/SCHEMA_SETUP
+  ansible.builtin.import_tasks:
+    file: schema_setup.yml
+

@@ -1,1 +1,2 @@
 component_name : catalogue
+schema_setup : mongo
