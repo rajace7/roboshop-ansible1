@@ -1,15 +1,15 @@
-- name : COPY REPO FILE TO YUM.REPO.D
-  ansible.builtin.copy:
-    src : mongod.repo
-    dest :  /etc/yum.repos.d/mongod.repo
+- name : Load Mongod Schema
   when : schema_setup == "mongo"
+  block:
+    - name : COPY REPO FILE TO YUM.REPO.D
+      ansible.builtin.copy:
+        src : mongod.repo
+        dest :  /etc/yum.repos.d/mongod.repo
 
-- name : INSTALL MONGOD CLIENT
-  ansible.builtin.yum:
-    name:  mongodb-org-shell
-    state: installed
-  when : schema_setup == "mongo"
+    - name : INSTALL MONGOD CLIENT
+      ansible.builtin.yum:
+        name:  mongodb-org-shell
+        state: installed
 
-- name : LOAD THE SCEHMA
-  ansible.builtin.shell : mongo --host {{ lookup('aws_ssm', 'dev.catalogue.host_mongosource', region='us-east-1' ) }} </app/schema/{{component_name}}.js
-  when : schema_setup == "mongo"
+    - name : LOAD THE SCEHMA
+      ansible.builtin.shell : mongo --host {{ lookup('aws_ssm', 'dev.catalogue.host_mongosource', region='us-east-1' ) }} </app/schema/{{component_name}}.js
