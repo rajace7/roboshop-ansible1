@@ -9,6 +9,11 @@
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
+- name: COPY NGINX.CONF file
+  ansible.builtin.template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
 - name: REMOVE DEFAULT WEBSERVER CONTENT
   ansible.builtin.file:
     path: /usr/share/nginx/html
