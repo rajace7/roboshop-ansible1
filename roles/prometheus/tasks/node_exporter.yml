@@ -1,2 +1,2 @@
 - name : install node exporter
-  ansible.builtin.shell : sudo labauto prometheus-node-exporter
+  ansible.builtin.shell: labauto prometheus-node-exporter
