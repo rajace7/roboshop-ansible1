@@ -3,4 +3,3 @@ labels:
   - { tag: env, label: env }
   - { tag: component_name, label: component_name}
 
-item : item.name
