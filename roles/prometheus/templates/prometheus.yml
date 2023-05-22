@@ -29,8 +29,6 @@ scrape_configs:
         filters:
           - name: tag:Monitor
             values: [ "true" ]
-
-
     relabel_configs:
       {% for label in labels %}
 
