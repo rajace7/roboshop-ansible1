@@ -1,29 +1,40 @@
+
 groups:
-- name: ec2 nodes
+- name: ec2-nodes
   rules:
-  - alert: HighCPUutilization
-    expr: 100-(avg by (component_name,env,instance,name) (rate(node_cpu_seconds_total{mode="idle"}[1m]) *100)) > 40
+  - alert: HighCPUUtilization
+    expr: 100 - (avg by (component_name, env, instance, job, name) (rate(node_cpu_seconds_total{mode="idle"}[1m]) * 100)) > 50
     for: 1m
     labels:
       severity: page
     annotations:
-      summary: High CPU latency/usage
+      summary: High CPU Usage
 
   - alert: HighMemoryUtilization
-      expr: 100 - (100 * ((node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes )  / node_memory_MemTotal_bytes)) > 50
-      for: 1m
-      labels:
-        severity: page
-      annotations:
-        summary: High Memoory Usage
+    expr: 100 - (100 * ((node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes )  / node_memory_MemTotal_bytes)) > 50
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: High Memoory Usage
 
-    - alert: ServerDown
-      expr: up < 1
-      for: 1m
-      labels:
-        severity: page
-      annotations:
-        summary: Server Down
+  - alert: ServerDown
+    expr: up < 1
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: Server Down
+  {% for component_name in components %}
+
+  - alert: ServiceDown-{{component_name.name}}
+    expr: node_systemd_unit_state{component_name="{{ component_name.name }}", exported_name="{{ component_name.service_name }}.service",state="active"} < 1
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: {{ component_name.name }} Component - Service Down
+  {%- endfor %}
 
 
 
