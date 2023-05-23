@@ -18,20 +18,4 @@ groups:
       annotations:
         summary: High Memory latency/usage
 
-  - alert: ServerDown
-        expr: up < 1
-        for: 1m
-        labels:
-          severity: page
-        annotations:
-          summary: Server Down
-
-
-  - alert: ServiceDown
-          expr: up < 1
-          for: 1m
-          labels:
-            severity: page
-          annotations:
-            summary: Server Down
 
