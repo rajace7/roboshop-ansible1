@@ -10,12 +10,5 @@ groups:
       summary: High CPU latency/usage
 
 
-  - alert: HighMemoryutilization
-      expr: 100-(100 * ((node_memory_Buffers_bytes + node_memory_Cached_bytes + node_memory_MemFree_bytes) / node_memory_MemTotal_bytes)) > 40
-      for: 1m
-      labels:
-        severity: page
-      annotations:
-        summary: High Memory latency/usage
 
 
