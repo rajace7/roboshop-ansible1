@@ -1,11 +1,3 @@
-/*- name : copy prometheus configuration
-  ansible.builtin.template:
-    src : "{{ item }}.yml"
-    dest : /opt/prometheus/"{{ item }}.yml"
-  loop :
-      - prometheus
-      - alerts
-*/
 
 - name : copy prometheus configuration
   ansible.builtin.template:
