@@ -1,2 +1,3 @@
 component_name : user
 schema_setup : mongo
+app_version: 1.0.0
