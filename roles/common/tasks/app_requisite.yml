@@ -18,3 +18,9 @@
     src: https://roboshop-artifacts.s3.amazonaws.com/{{component_name}}.zip
     dest: /app
     remote_src: yes
+
+- name: DOWNLOAD THE APP CONTENT & UNZIP THE APP CONTENT
+  ansible.builtin.unarchive:
+    src: http://172.31.95.142:8081/repository/{{component_name}}/{{component_name}}-{{app_version}}.zip
+    dest: /app
+    remote_src: yes

@@ -11,10 +11,11 @@
   ansible.builtin.import_tasks:
     file: app_requisite.yml
 
-- name: INSTALL NODEJS DEPENDENCIES
-  ansible.builtin.shell: npm install
-  args :
-    chdir : /app
+# this step will be done by ci pipeline
+#- name: INSTALL NODEJS DEPENDENCIES
+#  ansible.builtin.shell: npm install
+#  args :
+#    chdir : /app
 
 - name: IMPORT/SCHEMA_SETUP
   ansible.builtin.import_tasks:

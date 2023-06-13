@@ -1,16 +1,22 @@
-- name : INSTALL MAVEN
+# this step will be done by ci pipeline
+#- name : INSTALL MAVEN
+#  ansible.builtin.yum:
+#    name : maven
+#    state: installed
+#
+- name: Install Java
   ansible.builtin.yum:
-    name : maven
-    state: installed
+    name: java-17-openjdk
 
 - name: IMPORT/CALL APP_PREQUISITE YML
   ansible.builtin.import_tasks:
     file: app_requisite.yml
 
-- name: INSTALL maven DEPENDENCIES
-  ansible.builtin.shell: mvn clean package ; mv target/{{component_name}}-1.0.jar {{component_name}}.jar
-  args :
-    chdir : /app
+# this step will be done by ci pipeline
+#- name: INSTALL maven DEPENDENCIES
+#  ansible.builtin.shell: mvn clean package ; mv target/{{component_name}}-1.0.jar {{component_name}}.jar
+#  args :
+#    chdir : /app
 
 - name: IMPORT/SCHEMA_SETUP
   ansible.builtin.import_tasks:
