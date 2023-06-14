@@ -21,6 +21,6 @@
 
 - name: DOWNLOAD THE APP CONTENT & UNZIP THE APP CONTENT
   ansible.builtin.unarchive:
-    src: http://172.31.95.142:8081/repository/{{component_name}}/{{component_name}}-{{app_version}}.zip
+    src: http://172.31.95.142:8081/repository/{{component_name}}/{{component_name}}-{{ lookup('aws_ssm', '{{ env }}.{{component_name}}.app_version', region='us-east-1' ) }}.zip
     dest: /app
     remote_src: yes
